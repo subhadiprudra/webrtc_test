@@ -30,6 +30,7 @@ IO.on("connection", (socket) => {
   });
 
   socket.on("answerCall", (data) => {
+    console.log(socket.user, "answerCall");
     let callerId = data.callerId;
     let sdpAnswer = data.sdpAnswer;
 
@@ -42,6 +43,7 @@ IO.on("connection", (socket) => {
   socket.on("IceCandidate", (data) => {
     let calleeId = data.calleeId;
     let iceCandidate = data.iceCandidate;
+    console.log(socket.user, "IceCandidate");
 
     socket.to(calleeId).emit("IceCandidate", {
       sender: socket.user,
